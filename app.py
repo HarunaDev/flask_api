@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     return "Home"
 
-# create route with http parameter
+# create route with get http parameter
 @app.route("/get-user/<user_id>")
 def get_user(user_id):
     user_data = {
@@ -19,3 +19,12 @@ def get_user(user_id):
     if extra:
         user_data["extra"] = extra
         return jsonify(user_data), 200
+    
+# create route with post http parameter
+@app.route("/create-user", methods=["POST"])
+def create_user():
+    data = request.get_json()
+
+    return jsonify(data), 201
+
+
